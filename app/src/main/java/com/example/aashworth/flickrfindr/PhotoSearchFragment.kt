@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.photo_search_fragment.view.*
 
 class PhotoSearchFragment: Fragment() {
 
-    var photoSelectedListener: OnPhotoSelectedListener? = null
+    var photoSelectedListener: SearchFragmentListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.photo_search_fragment, container, false)
@@ -22,7 +22,7 @@ class PhotoSearchFragment: Fragment() {
         return view
     }
 
-    interface OnPhotoSelectedListener {
+    interface SearchFragmentListener {
         fun onPhotoSelected()
     }
 }

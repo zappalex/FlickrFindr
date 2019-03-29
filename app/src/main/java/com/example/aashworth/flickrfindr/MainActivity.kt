@@ -3,7 +3,7 @@ package com.example.aashworth.flickrfindr
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity(), PhotoSearchFragment.OnPhotoSelectedListener {
+class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentListener, PhotoDetailFragment.DetailFragmentListener {
 
     val photoSearchFragment = PhotoSearchFragment()
     val photoDetailFragment = PhotoDetailFragment()
@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.OnPhotoSelectedLis
         setContentView(R.layout.activity_main)
 
         photoSearchFragment.photoSelectedListener = this
+        photoDetailFragment.photoDetailListener = this
         addPhotoSearchFragment()
     }
 
@@ -42,4 +43,9 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.OnPhotoSelectedLis
     override fun onPhotoSelected() {
         addPhotoDetailFragment()
     }
+
+    override fun onNavigateBack() {
+        onBackPressed()
+    }
+
 }
