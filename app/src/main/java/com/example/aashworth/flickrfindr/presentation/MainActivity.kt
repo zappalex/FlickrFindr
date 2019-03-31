@@ -1,7 +1,8 @@
-package com.example.aashworth.flickrfindr
+package com.example.aashworth.flickrfindr.presentation
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.aashworth.flickrfindr.R
 
 class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentListener, PhotoDetailFragment.DetailFragmentListener {
 

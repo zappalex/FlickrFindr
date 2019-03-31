@@ -1,10 +1,11 @@
-package com.example.aashworth.flickrfindr
+package com.example.aashworth.flickrfindr.presentation
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.aashworth.flickrfindr.R
 
 import kotlinx.android.synthetic.main.photo_search_fragment.view.*
 
