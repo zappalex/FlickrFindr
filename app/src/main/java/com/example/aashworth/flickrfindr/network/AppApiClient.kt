@@ -1,15 +1,19 @@
 package com.example.aashworth.flickrfindr.network
 
-import android.arch.lifecycle.LiveData
-import com.example.aashworth.flickrfindr.InjectorUtils
 import com.example.aashworth.flickrfindr.data.models.SearchPhotosResponse
 import kotlinx.coroutines.Deferred
-import retrofit2.Response
 
+class AppApiClient (private val photoService: FlickrPhotoService) {
 
-object AppApiClient {
     fun searchPhotos(searchTerm: String): Deferred<SearchPhotosResponse> {
-        val flickrPhotoService = InjectorUtils.getFlickrPhotoService()
-        return flickrPhotoService.searchPhotos(searchTerm)
+        return photoService.searchPhotos(searchTerm)
+    }
+
+    companion object {
+        @Volatile private var instance: AppApiClient? = null
+
+        fun getInstance(photoService: FlickrPhotoService) = instance ?: synchronized(this) {
+            instance ?: AppApiClient(photoService).also { instance = it }
+        }
     }
 }
