@@ -2,7 +2,13 @@ package com.example.aashworth.flickrfindr.presentation
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.aashworth.flickrfindr.R
+import com.example.aashworth.flickrfindr.data.PhotosRepository
+import com.example.aashworth.flickrfindr.network.AppApiClient
+import kotlinx.coroutines.*
+import retrofit2.HttpException
+
 
 class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentListener, PhotoDetailFragment.DetailFragmentListener {
 
@@ -16,10 +22,11 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentList
         photoSearchFragment.photoSelectedListener = this
         photoDetailFragment.photoDetailListener = this
         addPhotoSearchFragment()
+
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount > 0 ){
+        if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         } else {
             super.onBackPressed()

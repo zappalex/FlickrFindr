@@ -6,7 +6,7 @@ import com.example.aashworth.flickrfindr.network.ServiceComponent
 object InjectorUtils {
 
     fun getFlickrPhotoService() : FlickrPhotoService {
-        val interceptor = ServiceComponent.getFlickrInterceptor()
+        val interceptor = ServiceComponent.getFlickrSearchPhotosInterceptor()
         val client = ServiceComponent.getClientWithInterceptor(interceptor)
         val retrofit = ServiceComponent.getRetrofit(ServiceComponent.FLICKR_BASE_URL, client)
         return ServiceComponent.getFlickrPhotoService(retrofit)
