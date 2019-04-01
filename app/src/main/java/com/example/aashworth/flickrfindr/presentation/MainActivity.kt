@@ -23,17 +23,18 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentList
         photoSearchFragment.photoSelectedListener = this
         photoDetailFragment.photoDetailListener = this
         addPhotoSearchFragment()
-        
+
         // TODO: remove after testing
         val repository = InjectorUtils.getRepository()
         var myJob : Job? = null
         myJob = CoroutineScope(Dispatchers.IO).launch {
             val result = repository.getPhotosForSearchTerm("yeti").await()
             withContext(Dispatchers.Main) {
-                Log.d("Success", "In life ya know")
+                for (photo in result.photos.photosList){
+                    Log.d("Heres one-> ", photo.id)
+                }
             }
         }
-
     }
 
     override fun onBackPressed() {

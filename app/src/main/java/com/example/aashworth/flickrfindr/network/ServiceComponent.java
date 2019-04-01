@@ -23,6 +23,8 @@ public class ServiceComponent {
     private static final String FLICKR_RETURN_FORMAT = "json";
     private static final String FLICKR_SEARCH_METHOD = "flickr.photos.search";
     private static final String FLICKR_NO_JSON = "1";
+    private static final String FLICKR_PAGES_NUMBER = "1";
+    private static final String FLICKR_RESULTS_PER_PAGE = "25";
 
     public static FlickrPhotoService getFlickrPhotoService(Retrofit retrofit) {
         return retrofit.create(FlickrPhotoService.class);
@@ -59,6 +61,8 @@ public class ServiceComponent {
                         .addQueryParameter("format", FLICKR_RETURN_FORMAT)
                         .addQueryParameter("method", FLICKR_SEARCH_METHOD )
                         .addQueryParameter("nojsoncallback", FLICKR_NO_JSON)
+                        .addQueryParameter("per_page", FLICKR_RESULTS_PER_PAGE)
+                        .addQueryParameter("page", FLICKR_PAGES_NUMBER)
                         .build();
 
                 Request.Builder requestBuilder = originalRequest.newBuilder().url(newHttpUrl);
