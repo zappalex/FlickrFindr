@@ -5,7 +5,7 @@ import kotlinx.coroutines.Deferred
 
 class AppApiClient (private val photoService: FlickrPhotoService) {
 
-    fun searchPhotos(searchTerm: String): Deferred<SearchPhotosResponse> {
+    fun searchPhotos(searchTerm: String?): Deferred<SearchPhotosResponse> {
         return photoService.searchPhotos(searchTerm)
     }
 

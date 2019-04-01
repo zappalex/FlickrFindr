@@ -8,6 +8,6 @@ import retrofit2.http.Query
 
 interface FlickrPhotoService {
     @GET(".")
-    fun searchPhotos(@Query("text") searchTerm: String)
+    fun searchPhotos(@Query("text") searchTerm: String?)
             : Deferred<SearchPhotosResponse>
 }

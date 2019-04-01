@@ -2,13 +2,8 @@ package com.example.aashworth.flickrfindr.presentation
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.aashworth.flickrfindr.InjectorUtils
 import com.example.aashworth.flickrfindr.R
-import com.example.aashworth.flickrfindr.data.PhotosRepository
-import com.example.aashworth.flickrfindr.network.AppApiClient
-import kotlinx.coroutines.*
-import retrofit2.HttpException
 
 
 class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentListener, PhotoDetailFragment.DetailFragmentListener {
@@ -24,17 +19,11 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentList
         photoDetailFragment.photoDetailListener = this
         addPhotoSearchFragment()
 
-        // TODO: remove after testing
-        val repository = InjectorUtils.getRepository()
-        var myJob : Job? = null
-        myJob = CoroutineScope(Dispatchers.IO).launch {
-            val result = repository.getPhotosForSearchTerm("yeti").await()
-            withContext(Dispatchers.Main) {
-                for (photo in result.photos.photosList){
-                    Log.d("Heres one-> ", photo.id)
-                }
-            }
-        }
+        initializeUi()
+    }
+
+    private fun initializeUi() {
+
     }
 
     override fun onBackPressed() {
@@ -61,6 +50,7 @@ class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentList
     }
 
     override fun onPhotoSelected() {
+        //TODO: remove when testing done
         addPhotoDetailFragment()
     }
 
