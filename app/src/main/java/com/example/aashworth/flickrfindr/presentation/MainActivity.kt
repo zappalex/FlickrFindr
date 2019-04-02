@@ -1,61 +1,45 @@
 package com.example.aashworth.flickrfindr.presentation
 
+import android.arch.lifecycle.Observer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.inputmethod.EditorInfo
 import com.example.aashworth.flickrfindr.InjectorUtils
 import com.example.aashworth.flickrfindr.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), PhotoSearchFragment.SearchFragmentListener, PhotoDetailFragment.DetailFragmentListener {
+class MainActivity : AppCompatActivity() {
 
-    val photoSearchFragment = PhotoSearchFragment()
-    val photoDetailFragment = PhotoDetailFragment()
+    val viewModel = PhotoSearchViewModel(InjectorUtils.getRepository())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        photoSearchFragment.photoSelectedListener = this
-        photoDetailFragment.photoDetailListener = this
-        addPhotoSearchFragment()
-
         initializeUi()
     }
 
     private fun initializeUi() {
-
+        setSearchTermListener()
     }
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
-        } else {
-            super.onBackPressed()
+    private fun setSearchTermListener() {
+        search_term.setOnEditorActionListener() { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.getPhotosForSearchTerm(v.text.toString()).observe(this@MainActivity, Observer { photos ->
+                    Log.d("TEsting", "Twerking")
+                    // TODO: Set Grid View Here
+                    photos?.forEach { photo ->
+                        Log.d("Path", photo.fullPhotoUrl)
+                    }
+                })
+            }
+            false
         }
-    }
-
-    private fun addPhotoSearchFragment() {
-        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragment_container, photoSearchFragment, "searchFragment")
-                .commit()
-    }
-
-    private fun addPhotoDetailFragment() {
-        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragment_container, photoDetailFragment, "detailFragment")
-                .addToBackStack(null)
-                .commit()
-    }
-
-    override fun onPhotoSelected() {
-        //TODO: remove when testing done
-        addPhotoDetailFragment()
-    }
-
-    override fun onNavigateBack() {
-        onBackPressed()
     }
 
 }

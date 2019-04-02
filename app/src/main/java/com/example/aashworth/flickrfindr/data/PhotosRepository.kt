@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class PhotosRepository(private val appApiClient: AppApiClient) {
 
-    fun getPhotosForSearchTerm(searchTerm: String?): Deferred<SearchPhotosResponse> {
+    fun getPhotosForSearchTerm(searchTerm: String): Deferred<SearchPhotosResponse> {
         val result = appApiClient.searchPhotos(searchTerm)
         return result
     }

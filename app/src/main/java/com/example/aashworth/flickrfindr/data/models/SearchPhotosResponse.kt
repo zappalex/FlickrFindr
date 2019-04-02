@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchPhotosResponse(
         @SerializedName("photos") val photos: PhotosList
-) {}
-
+)
 
 data class PhotosList (
         @SerializedName("photo") val photosList: List<Photo>
@@ -13,5 +12,7 @@ data class PhotosList (
 
 data class Photo(
         @SerializedName("id") val id: String,
-        @SerializedName("title") val title: String
-) {}
+        @SerializedName("title") val title: String,
+        @SerializedName("owner") val owner: String,
+        var fullPhotoUrl: String
+)
