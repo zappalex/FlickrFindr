@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
         layoutManager = LinearLayoutManager(this)
 
         recyclerView = findViewById(R.id.photos_recycler_view)
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = viewAdapter
         setSearchTermListener()
@@ -52,8 +53,17 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
     private fun addPhotosToViewAdapter(view: TextView) {
         viewModel.getPhotosForSearchTerm(view.text.toString()).observe(this@MainActivity, Observer { photos ->
             viewAdapter.setPhotoList(photos)
-            recyclerView.scrollToPosition(0)
+            resetSearchTerm()
+            resetScrollView()
         })
+    }
+
+    private fun resetSearchTerm() {
+        search_term_edittext.setText("")
+    }
+
+    private fun resetScrollView() {
+        recyclerView.scrollToPosition(0)
     }
 
     override fun onClick(photo: Photo?) {
