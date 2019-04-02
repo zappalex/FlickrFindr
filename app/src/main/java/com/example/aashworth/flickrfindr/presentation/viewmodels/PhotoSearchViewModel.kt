@@ -9,21 +9,10 @@ import kotlinx.coroutines.*
 
 class PhotoSearchViewModel(private val photosRepository: PhotosRepository) : ViewModel() {
 
-    fun getPhotosForSearchTerm(searchTerm: String): LiveData<List<Photo>> {
-        var photosLiveData = MutableLiveData<List<Photo>>()
+    var photosList = MutableLiveData<List<Photo>> ()
 
-        //TODO: cancel job
-        var myJob: Job? = null
-        myJob = CoroutineScope(Dispatchers.IO).launch {
-            val result = photosRepository.getPhotosForSearchTerm(searchTerm).await()
-            withContext(Dispatchers.Main) {
-                for (photo in result?.photos?.photosList) {
-                    photo.fullPhotoUrl = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg"
-                }
-                photosLiveData.value = result.photos.photosList
-            }
-        }
-        return photosLiveData
+    fun getPhotosListForTerm(term: String): LiveData<List<Photo>> {
+        photosList = photosRepository.getPhotosForSearchTerm(term)
+        return photosList
     }
-
 }
