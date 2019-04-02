@@ -1,14 +1,8 @@
 package com.example.aashworth.flickrfindr.data
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import com.example.aashworth.flickrfindr.data.models.SearchPhotosResponse
 import com.example.aashworth.flickrfindr.network.AppApiClient
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 
 class PhotosRepository(private val appApiClient: AppApiClient) {
 
@@ -18,7 +12,8 @@ class PhotosRepository(private val appApiClient: AppApiClient) {
     }
 
     companion object {
-        @Volatile private var instance: PhotosRepository? = null
+        @Volatile
+        private var instance: PhotosRepository? = null
 
         fun getInstance(appApiClient: AppApiClient) = instance ?: synchronized(this) {
             instance ?: PhotosRepository(appApiClient).also { instance = it }

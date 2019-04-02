@@ -6,8 +6,9 @@ import com.example.aashworth.flickrfindr.network.FlickrPhotoService
 import com.example.aashworth.flickrfindr.network.ServiceComponent
 
 object InjectorUtils {
+    // This is where we do injection where needed
 
-    fun getRepository() : PhotosRepository {
+    fun getRepository(): PhotosRepository {
         val interceptor = ServiceComponent.getFlickrSearchPhotosInterceptor()
         val client = ServiceComponent.getClientWithInterceptor(interceptor)
         val retrofit = ServiceComponent.getRetrofit(ServiceComponent.FLICKR_BASE_URL, client)

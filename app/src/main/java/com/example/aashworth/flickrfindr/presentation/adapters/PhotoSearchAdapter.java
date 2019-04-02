@@ -1,4 +1,4 @@
-package com.example.aashworth.flickrfindr.presentation;
+package com.example.aashworth.flickrfindr.presentation.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.PhotoViewHolder> {
-
     private List<Photo> photoList;
     private final PhotoSearchAdapterOnClickHandler photoClickHandler;
 
@@ -34,17 +33,17 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
 
         public PhotoViewHolder(View view) {
             super(view);
-            photoImageView = view.findViewById(R.id.photo_img_view);
+            photoImageView = view.findViewById(R.id.photo_imgview);
             photoTitleTextView = view.findViewById(R.id.photo_title_textview);
             view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            int adapterPosition = getAdapterPosition();
-            // TODO: Check null
-            Photo clickedPhoto = photoList.get(adapterPosition);
-            photoClickHandler.onClick(clickedPhoto);
+//            int adapterPosition = getAdapterPosition();
+//            // TODO: Check null
+//            Photo clickedPhoto = photoList.get(adapterPosition);
+//            photoClickHandler.onClick(clickedPhoto);
         }
     }
 

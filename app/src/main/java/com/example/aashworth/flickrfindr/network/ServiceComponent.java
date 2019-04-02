@@ -1,6 +1,5 @@
 package com.example.aashworth.flickrfindr.network;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory;
@@ -17,7 +16,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceComponent {
-
     public static final String FLICKR_BASE_URL = "https://api.flickr.com/services/rest/";
     private static final String FLICKR_API_KEY = "1508443e49213ff84d566777dc211f2a";
     private static final String FLICKR_RETURN_FORMAT = "json";
@@ -55,11 +53,10 @@ public class ServiceComponent {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 Request originalRequest = chain.request();
                 HttpUrl originalHttpUrl = originalRequest.url();
-
                 HttpUrl newHttpUrl = originalHttpUrl.newBuilder()
                         .addQueryParameter("api_key", FLICKR_API_KEY)
                         .addQueryParameter("format", FLICKR_RETURN_FORMAT)
-                        .addQueryParameter("method", FLICKR_SEARCH_METHOD )
+                        .addQueryParameter("method", FLICKR_SEARCH_METHOD)
                         .addQueryParameter("nojsoncallback", FLICKR_NO_JSON)
                         .addQueryParameter("per_page", FLICKR_RESULTS_PER_PAGE)
                         .addQueryParameter("page", FLICKR_PAGES_NUMBER)
@@ -77,6 +74,5 @@ public class ServiceComponent {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
     }
-
 
 }
