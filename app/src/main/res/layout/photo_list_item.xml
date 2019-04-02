@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/photo_img"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true" />
+        android:layout_height="260dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp">
+
+
+        <!--IMG !-->
+        <ImageView
+            android:id="@+id/photo_img_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Title !-->
+        <TextView
+            android:id="@+id/photo_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:alpha="0.6"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:minHeight="36dp"
+            android:padding="16dp"
+            android:text="No Image Found"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

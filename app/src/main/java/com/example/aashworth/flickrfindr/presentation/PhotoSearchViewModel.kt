@@ -17,7 +17,7 @@ class PhotoSearchViewModel(private val photosRepository: PhotosRepository) : Vie
             val result = photosRepository.getPhotosForSearchTerm(searchTerm).await()
             withContext(Dispatchers.Main) {
                 for (photo in result?.photos?.photosList){
-                    photo.fullPhotoUrl = "https://www.flickr.com/photos/${photo.owner}/${photo.id}"
+                    photo.fullPhotoUrl = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg"
                 }
                 photosLiveData.value = result.photos.photosList
             }

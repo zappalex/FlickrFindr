@@ -6,9 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.aashworth.flickrfindr.R;
 import com.example.aashworth.flickrfindr.data.models.Photo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -26,10 +29,13 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     }
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        //TODO: add member values here
+        public final ImageView photoImageView;
+        public final TextView photoTitleTextView;
+
         public PhotoViewHolder(View view) {
             super(view);
-            // TODO: declare member variable
+            photoImageView = view.findViewById(R.id.photo_img_view);
+            photoTitleTextView = view.findViewById(R.id.photo_title_textview);
             view.setOnClickListener(this);
         }
 
@@ -57,9 +63,15 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     public void onBindViewHolder(@NonNull PhotoViewHolder photoViewHolder, int i) {
         // TODO: check null
         Photo currentPhoto = photoList.get(i);
+        photoViewHolder.photoTitleTextView.setText(currentPhoto.getTitle());
+
         String currentPhotoImgPath = currentPhoto.getFullPhotoUrl();
 
-        // Use Picasso Here
+        Picasso.get()
+                .load(currentPhotoImgPath)
+                .fit()
+                .centerCrop()
+                .into(photoViewHolder.photoImageView);
     }
 
     @Override
@@ -72,6 +84,7 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     }
 
     public void setPhotoList(List<Photo> photoList) {
+        // TODO: check null
         this.photoList = photoList;
         notifyDataSetChanged();
     }
