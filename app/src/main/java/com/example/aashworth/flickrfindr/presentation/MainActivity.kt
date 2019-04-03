@@ -14,7 +14,6 @@ import com.example.aashworth.flickrfindr.presentation.adapters.PhotoSearchAdapte
 import com.example.aashworth.flickrfindr.presentation.viewmodels.PhotoSearchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterOnClickHandler {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PhotoSearchAdapter
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
         recyclerView.scrollToPosition(0)
     }
 
-    override fun onClick(photo: Photo?) {
+    override fun onClick(photo: Photo) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
