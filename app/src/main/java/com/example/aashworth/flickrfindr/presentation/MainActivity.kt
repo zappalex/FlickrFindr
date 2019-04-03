@@ -1,6 +1,7 @@
 package com.example.aashworth.flickrfindr.presentation
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -67,6 +68,10 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
     }
 
     override fun onClick(photo: Photo) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val context = this
+        val destinationActivity = PhotoDetailActivity::class.java
+        val intentStartMovieDetail = Intent(context, destinationActivity)
+        //intentStartMovieDetail.putExtra(PARCELABLE_MOVIE, photo)
+        startActivity(intentStartMovieDetail)
     }
 }

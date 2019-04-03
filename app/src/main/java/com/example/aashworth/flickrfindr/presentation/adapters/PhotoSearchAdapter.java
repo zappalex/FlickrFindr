@@ -40,10 +40,12 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
 
         @Override
         public void onClick(View view) {
-//            int adapterPosition = getAdapterPosition();
-//            // TODO: Check null
-//            Photo clickedPhoto = photoList.get(adapterPosition);
-//            photoClickHandler.onClick(clickedPhoto);
+            int adapterPosition = getAdapterPosition();
+            //TODO: null check here?
+            Photo clickedPhoto = photoList.get(adapterPosition);
+            if(clickedPhoto != null ) {
+                photoClickHandler.onClick(clickedPhoto);
+            }
         }
     }
 
