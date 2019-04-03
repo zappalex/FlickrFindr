@@ -15,6 +15,13 @@
         android:paddingRight="@dimen/padding_medium"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="@dimen/search_icon_size"
+            android:layout_height="@dimen/search_icon_size"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_search_24px"
+            android:tint="@color/cardview_dark_background" />
+
         <EditText
             android:id="@+id/search_term_edittext"
             android:layout_width="match_parent"
