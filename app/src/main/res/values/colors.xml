@@ -2,6 +2,5 @@
 <resources>
     <color name="colorPrimary">#9E9E9E</color>
     <color name="colorPrimaryDark">#757575</color>
-    <color name="seachResultsBackground">#E0E0E0</color>
     <color name="colorAccent">#FF4081</color>
 </resources>
