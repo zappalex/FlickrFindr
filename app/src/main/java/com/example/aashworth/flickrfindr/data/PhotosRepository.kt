@@ -15,7 +15,7 @@ class PhotosRepository(private val appApiClient: AppApiClient) {
             val result = appApiClient.searchPhotos(searchTerm).await()
             withContext(Dispatchers.Main) {
                 for (photo in result?.photos?.photosList) {
-                    photo.fullPhotoUrl = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg"
+                    photo.fullPhotoUrl = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_z.jpg"
                 }
                 photosLiveData.value = result.photos.photosList
             }
