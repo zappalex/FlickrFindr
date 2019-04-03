@@ -9,5 +9,5 @@ A Few of the concepts/technologies "played with" in this App:
 - Picasso
 
 Reference
-https://www.flickr.com/services/api/flickr.photos.search.html
-https://www.flickr.com/services/api/misc.urls.html
+- https://www.flickr.com/services/api/flickr.photos.search.html
+- https://www.flickr.com/services/api/misc.urls.html
