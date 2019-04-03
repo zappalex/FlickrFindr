@@ -10,6 +10,5 @@ data class Photo(
         @SerializedName("title") val title: String,
         @SerializedName("secret") val secret: String,
         @SerializedName("server") val server: String,
-        @SerializedName("farm") val farm: String,
-        var fullPhotoUrl: String
+        @SerializedName("farm") val farm: String
 ) : Parcelable

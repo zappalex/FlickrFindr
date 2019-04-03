@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import com.example.aashworth.flickrfindr.R
 import com.example.aashworth.flickrfindr.data.models.Photo
+import com.example.aashworth.flickrfindr.network.ImageDownloader
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_photo_detail.*
 
@@ -26,15 +27,8 @@ class PhotoDetailActivity : AppCompatActivity() {
     }
 
     fun populateViews(photo: Photo) {
-
         photo_title_textview.setText(photo.title)
-
-        Picasso.get()
-                .load(photo.fullPhotoUrl)
-                .fit()
-                .centerCrop()
-                .into(photo_imgview)
-
+        ImageDownloader.downloadLargeImage(photo, photo_imgview)
     }
 
 }

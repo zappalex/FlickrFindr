@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.aashworth.flickrfindr.R;
 import com.example.aashworth.flickrfindr.data.models.Photo;
+import com.example.aashworth.flickrfindr.network.ImageDownloader;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,14 +63,7 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     public void onBindViewHolder(@NonNull PhotoViewHolder photoViewHolder, int i) {
         // TODO: check null
         Photo currentPhoto = photoList.get(i);
-
-        String currentPhotoImgPath = currentPhoto.getFullPhotoUrl();
-
-        Picasso.get()
-                .load(currentPhotoImgPath)
-                .fit()
-                .centerCrop()
-                .into(photoViewHolder.photoImageView);
+        ImageDownloader.INSTANCE.downloadMediumImage(currentPhoto, photoViewHolder.photoImageView);
     }
 
     @Override

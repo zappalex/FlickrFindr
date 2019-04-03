@@ -22,7 +22,7 @@ public class ServiceComponent {
     private static final String FLICKR_SEARCH_METHOD = "flickr.photos.search";
     private static final String FLICKR_NO_JSON = "1";
     private static final String FLICKR_PAGES_NUMBER = "1";
-    private static final String FLICKR_RESULTS_PER_PAGE = "25";
+    private static final String FLICKR_RESULTS_PER_PAGE = "26";
 
     public static FlickrPhotoService getFlickrPhotoService(Retrofit retrofit) {
         return retrofit.create(FlickrPhotoService.class);
