@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
     private fun initializeUi() {
         viewModel = PhotoSearchViewModel(InjectorUtils.getRepository())
         viewAdapter = PhotoSearchAdapter(this)
-        layoutManager =  GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+        layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
 
         recyclerView = findViewById(R.id.photos_recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
         })
     }
 
-    private fun resetSearchTerm() {
-        search_term_edittext.setText("")
-    }
-
     private fun resetScrollView() {
         recyclerView.scrollToPosition(0)
+    }
+
+    private fun resetSearchTerm() {
+        search_term_edittext.setText("")
     }
 
     override fun onClick(photo: Photo) {

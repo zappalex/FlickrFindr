@@ -1,6 +1,5 @@
 package com.example.aashworth.flickrfindr.data
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.example.aashworth.flickrfindr.data.models.Photo
 import com.example.aashworth.flickrfindr.network.AppApiClient

@@ -1,24 +1,23 @@
 package com.example.aashworth.flickrfindr.presentation.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.aashworth.flickrfindr.R;
 import com.example.aashworth.flickrfindr.data.models.Photo;
 import com.example.aashworth.flickrfindr.network.ImageDownloader;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.PhotoViewHolder> {
     private List<Photo> photoList;
     private final PhotoSearchAdapterOnClickHandler photoClickHandler;
+    private static final String TAG = "PhotoSearchAdapter";
 
     public interface PhotoSearchAdapterOnClickHandler {
         void onClick(Photo photo);
@@ -40,17 +39,13 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            //TODO: null check here?
-            Photo clickedPhoto = photoList.get(adapterPosition);
-            if(clickedPhoto != null ) {
-                photoClickHandler.onClick(clickedPhoto);
-            }
+            Photo clickedPhoto = getPhotoForPosition(adapterPosition);
+            photoClickHandler.onClick(clickedPhoto);
         }
     }
 
-    @NonNull
     @Override
-    public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public PhotoViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.photo_list_item;
 
@@ -60,9 +55,8 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotoViewHolder photoViewHolder, int i) {
-        // TODO: check null
-        Photo currentPhoto = photoList.get(i);
+    public void onBindViewHolder(PhotoViewHolder photoViewHolder, int i) {
+        Photo currentPhoto = getPhotoForPosition(i);
         ImageDownloader.INSTANCE.downloadMediumImage(currentPhoto, photoViewHolder.photoImageView);
     }
 
@@ -76,8 +70,32 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     }
 
     public void setPhotoList(List<Photo> photoList) {
-        // TODO: check null
-        this.photoList = photoList;
-        notifyDataSetChanged();
+        if (photoList != null) {
+            this.photoList = photoList;
+            notifyDataSetChanged();
+        } else {
+            Log.e(TAG, "Attempting to set photoList, but found null");
+        }
+    }
+
+    private Photo getPhotoForPosition(int position) {
+        if (photoList != null) {
+            Photo photoForPosition = photoList.get(position);
+            if (photoForPosition != null) {
+                return photoForPosition;
+            }
+        }
+        Log.e(TAG, "Trying to use null photo, substituting default");
+        return getDefaultPhoto();
+    }
+
+    private Photo getDefaultPhoto() {
+        return new Photo(
+                "33654303778",
+                "Image Not Found",
+                "2ae54d65d6",
+                "7819",
+                "8"
+        );
     }
 }

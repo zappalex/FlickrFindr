@@ -5,11 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.aashworth.flickrfindr.data.PhotosRepository
 import com.example.aashworth.flickrfindr.data.models.Photo
-import kotlinx.coroutines.*
 
 class PhotoSearchViewModel(private val photosRepository: PhotosRepository) : ViewModel() {
 
-    var photosList = MutableLiveData<List<Photo>> ()
+    var photosList = MutableLiveData<List<Photo>>()
 
     fun getPhotosListForTerm(term: String): LiveData<List<Photo>> {
         photosList = photosRepository.getPhotosForSearchTerm(term)

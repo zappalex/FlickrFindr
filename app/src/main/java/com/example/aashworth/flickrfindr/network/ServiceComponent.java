@@ -1,7 +1,5 @@
 package com.example.aashworth.flickrfindr.network;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory;
 
 import java.io.IOException;
@@ -29,14 +27,10 @@ public class ServiceComponent {
     }
 
     public static Retrofit getRetrofit(String baseUrl, OkHttpClient.Builder client) {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(CoroutineCallAdapterFactory.create())
                 .build();
     }

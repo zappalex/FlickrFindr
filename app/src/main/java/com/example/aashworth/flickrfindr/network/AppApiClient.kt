@@ -9,8 +9,6 @@ class AppApiClient(private val photoService: FlickrPhotoService) {
         return photoService.searchPhotos(searchTerm)
     }
 
-    // add picasso call here
-
     companion object {
         @Volatile
         private var instance: AppApiClient? = null
