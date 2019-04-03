@@ -71,7 +71,11 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
         val context = this
         val destinationActivity = PhotoDetailActivity::class.java
         val intentStartMovieDetail = Intent(context, destinationActivity)
-        //intentStartMovieDetail.putExtra(PARCELABLE_MOVIE, photo)
+        intentStartMovieDetail.putExtra(PARCELABLE_PHOTO, photo)
         startActivity(intentStartMovieDetail)
+    }
+
+    companion object {
+        val PARCELABLE_PHOTO = "parcelable_photo"
     }
 }
