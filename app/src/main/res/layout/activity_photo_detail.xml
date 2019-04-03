@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/margin_large"
         android:layout_height="@dimen/detail_photo_height"
+        android:src="@drawable/ic_baseline_error_24px"
         />
 
     <TextView

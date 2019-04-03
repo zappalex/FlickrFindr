@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/photo_imgview"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="@dimen/gridview_item_height"
+        android:src="@drawable/ic_baseline_error_24px"/>
 
 </FrameLayout>
