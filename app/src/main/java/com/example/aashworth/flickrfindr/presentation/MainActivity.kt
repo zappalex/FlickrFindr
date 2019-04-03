@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -31,17 +31,17 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
     private fun initializeUi() {
         viewModel = PhotoSearchViewModel(InjectorUtils.getRepository())
         viewAdapter = PhotoSearchAdapter(this)
-        layoutManager = LinearLayoutManager(this)
+        layoutManager =  GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
 
         recyclerView = findViewById(R.id.photos_recycler_view)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = viewAdapter
 
-        setSearchTermListener()
+        setSearchTermListeners()
     }
 
-    private fun setSearchTermListener() {
+    private fun setSearchTermListeners() {
         search_term_edittext.setOnEditorActionListener() { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 addPhotosToViewAdapter(v)
@@ -49,12 +49,12 @@ class MainActivity : AppCompatActivity(), PhotoSearchAdapter.PhotoSearchAdapterO
             // we return false each time to ensure keyboard is removed
             false
         }
+        search_term_edittext.setOnClickListener { resetSearchTerm() }
     }
 
     private fun addPhotosToViewAdapter(view: TextView) {
         viewModel.getPhotosListForTerm(view.text.toString()).observe(this@MainActivity, Observer { photos ->
             viewAdapter.setPhotoList(photos)
-            resetSearchTerm()
             resetScrollView()
         })
     }

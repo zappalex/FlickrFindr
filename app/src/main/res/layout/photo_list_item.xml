@@ -3,33 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/cardview_height"-->
+        <!--android:layout_marginLeft="@dimen/margin_medium"-->
+        <!--android:layout_marginTop="@dimen/margin_small"-->
+        <!--android:layout_marginRight="@dimen/margin_medium"-->
+        <!--android:layout_marginBottom="@dimen/margin_small">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/photo_imgview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/photo_title_textview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:alpha="0.65"-->
+            <!--android:background="@android:color/black"-->
+            <!--android:gravity="center"-->
+            <!--android:minHeight="@dimen/photo_title_min_height"-->
+            <!--android:padding="@dimen/padding_medium"-->
+            <!--android:text="@string/no_image_found"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="@dimen/photo_title_text_size" />-->
+
+    <!--</android.support.v7.widget.CardView>-->
+
+    <ImageView
+        android:id="@+id/photo_imgview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/cardview_height"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:layout_marginBottom="@dimen/margin_small">
-
-        <ImageView
-            android:id="@+id/photo_imgview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/photo_title_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:alpha="0.65"
-            android:background="@android:color/black"
-            android:gravity="center"
-            android:minHeight="@dimen/photo_title_min_height"
-            android:padding="@dimen/padding_medium"
-            android:text="@string/no_image_found"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/photo_title_text_size" />
-
-    </android.support.v7.widget.CardView>
+        android:layout_height="@dimen/cardview_height" />
 
 </FrameLayout>

@@ -29,12 +29,10 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final ImageView photoImageView;
-        public final TextView photoTitleTextView;
 
         public PhotoViewHolder(View view) {
             super(view);
             photoImageView = view.findViewById(R.id.photo_imgview);
-            photoTitleTextView = view.findViewById(R.id.photo_title_textview);
             view.setOnClickListener(this);
         }
 
@@ -64,7 +62,6 @@ public class PhotoSearchAdapter extends RecyclerView.Adapter<PhotoSearchAdapter.
     public void onBindViewHolder(@NonNull PhotoViewHolder photoViewHolder, int i) {
         // TODO: check null
         Photo currentPhoto = photoList.get(i);
-        photoViewHolder.photoTitleTextView.setText(currentPhoto.getTitle());
 
         String currentPhotoImgPath = currentPhoto.getFullPhotoUrl();
 
